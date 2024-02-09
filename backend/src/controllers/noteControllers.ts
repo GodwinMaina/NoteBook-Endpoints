@@ -7,13 +7,11 @@ import {note} from  "../interface/Interfacenote"
 import { sqlConfig } from '../config/mssql';
 
 
-// Create Notes
+// Create Note
 export const createNote = async(req: Request, res: Response)=>{
-
         try {
 
             const {Title,Content,CreatedAt }:note =req.body;
-
             const id = v4();
             const pool = await mssql.connect(sqlConfig);
 
@@ -36,65 +34,56 @@ export const createNote = async(req: Request, res: Response)=>{
 };
 
 
-
-
 //get All notes
 export const getNote = async(req: Request, res: Response)=>{
     try {
-
         const pool = await mssql.connect(sqlConfig);       
-        const result = await pool.request().query('SELECT * FROM Notes');
+        const result = await pool.request()
+        .execute('getNote');
         const notes: note[] = result.recordset;
 
         res.json(notes);
     } catch (error) {
         console.error("Error fetching notes:", error);
-
     } 
 };
 
 
+//update note
 export const updateNote = async(req: Request, res: Response)=>{
     try { 
-        const noteId: string = req.params.id;
+        const note_id: string = req.params.id;
         const { Title, Content, CreatedAt }: note = req.body;
         const pool = await mssql.connect(sqlConfig);
 
         const result = await pool.request()
-            .input('note_id', mssql.VarChar, noteId)
+            .input('note_id', mssql.VarChar, note_id)
             .input('Title', mssql.VarChar, Title)
             .input('Content', mssql.VarChar, Content)
             .input('CreatedAt', mssql.VarChar, CreatedAt)
             .execute('updateNote');
 
-        if (result.rowsAffected[0] === 1) {
+        if (result) {
            
             res.json({ message: 'Note updated successfully' });
-        } else {
-
-            res.status(404).json({ error: 'Note not found' });
-        }
+        } 
     } catch (error) {
     
-        console.error("Error updating note:", error);
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-
-
-
-    
+        console.error("error updating note");
+       
+    }    
 }
 
+// get one note by id
 export const getOneNote =  async(req: Request, res: Response)=>{
 
     try {
-
-        const noteId: string = req.params.id;
+        const note_id: string = req.params.id;
         const pool = await mssql.connect(sqlConfig);
 
         const result = await pool.request()
-            .input('noteId', mssql.VarChar, noteId)
-            .query('SELECT * FROM Notes WHERE id = @noteId');
+        .input('note_id', mssql.VarChar, note_id)
+        .execute("getOneNote")
 
             res.json(result.recordset[0]);
        
@@ -103,14 +92,24 @@ export const getOneNote =  async(req: Request, res: Response)=>{
         console.error("Error fetching note:", error);
        
     }
-
-
-
-    
+  
 }
 
+//deletenote by id
 export const deleteNote =  async(req: Request, res: Response)=>{
 
+    try {
+        const pool = await mssql.connect(sqlConfig);
+        const note_id: string = req.params.id;
 
-    
+        const result = await pool.request()
+            .input('note_Id', mssql.VarChar, note_id)
+            .execute('DeleteNote');
+
+        return result;
+
+    } catch (error) {
+        console.error('Error deleting');
+       
+    }    
 }

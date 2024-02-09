@@ -1,6 +1,6 @@
 
 CREATE PROCEDURE UpdateNote
-    @NoteId VARCHAR(100),
+    @note_id VARCHAR(100),
     @Title VARCHAR(255),
     @Content VARCHAR(MAX),
     @CreatedAt VARCHAR(50)
@@ -11,5 +11,6 @@ BEGIN
     SET Title = @Title,
         Content = @Content,
         CreatedAt = @CreatedAt
-    WHERE NoteId = @NoteId;
+    WHERE note_Id = @note_id;
 END;
+

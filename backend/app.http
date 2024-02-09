@@ -3,11 +3,21 @@
 POST http://localhost:5000/
 Content-Type: application/json
 
-{
-    "Title":"Atop Wudan Tales",
-    "Content":"Tales of wudan, mysteioury story of Andrew Tate",
-    "CreatedAt":"3/04/2020"  
-}
+[
+    {
+        "Title": "Atop Wudan Tales",
+        "Content": "Tales of wudan, mysterious story of Andrew Tate",
+        "CreatedAt": "4/04/220"
+    },
+    {
+        "Title": "Atop Wudan Tales",
+        "Content": "Tales of wudan, mysterious story of Andrew Tate",
+        "CreatedAt": "5/06/2024"
+    }
+]
+
+
+
 
 ### GET ALL NOTES
 GET http://localhost:5000/
@@ -28,23 +38,18 @@ Content-Type: application/json
 
 
 ### UPDATE NOTE
-PUT http://localhost:5000/notes/update/2aa500dc-801d-4f10-bc23-d55c2ab5e329
+PUT http://localhost:5000/update/418e1d04-c8e3-45c0-9166-8440ec988c25
 Content-Type: application/json
 
 {
-    "Title":"Atop Wudan Tales",
+    "Title":"Updad WUDAN to Atop",
     "Content":"Tales of wudan, mysteioury story of Andrew Tate",
-    "CreatedAt":"3/04/2020"
+    "CreatedAt":"67 3/4/2020"
 }
 
 
 ### DELETE NOTE
-
-DELETE http://localhost:3000/2aa500dc-801d-4f10-bc23-d55c2ab5e329
+DELETE http://localhost:5000/delete/418e1d04-c8e3-45c0-9166-8440ec988c25
 Content-Type: application/json
 
-    {
-    "Title":"Atop Wudan Tales",
-    "Content":"Tales of wudan, mysteioury story of Andrew Tate",    "CreatedAt":"3/04/2020"
 
-   }
