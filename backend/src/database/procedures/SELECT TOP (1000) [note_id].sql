@@ -1,0 +1,5 @@
+SELECT TOP (1000) [note_id]
+      ,[Title]
+      ,[Content]
+      ,[CreatedAt]
+  FROM [NOTEBOOK].[dbo].[NOTE]

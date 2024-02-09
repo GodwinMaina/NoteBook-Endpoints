@@ -1,0 +1,50 @@
+
+### CREATE NOTE
+POST http://localhost:5000/
+Content-Type: application/json
+
+{
+    "Title":"Atop Wudan Tales",
+    "Content":"Tales of wudan, mysteioury story of Andrew Tate",
+    "CreatedAt":"3/04/2020"  
+}
+
+### GET ALL NOTES
+GET http://localhost:5000/
+Content-Type: application/json
+
+{
+    "Title":"Atop Wudan Tales",
+    "Content":"Tales of wudan, mysteioury story of Andrew Tate",
+    "CreatedAt":"3/04/2020"
+}
+
+###get One NOTE
+GET http://localhost:5000/418e1d04-c8e3-45c0-9166-8440ec988c25
+Content-Type: application/json
+
+
+
+
+
+### UPDATE NOTE
+PUT http://localhost:5000/notes/update/2aa500dc-801d-4f10-bc23-d55c2ab5e329
+Content-Type: application/json
+
+{
+    "Title":"Atop Wudan Tales",
+    "Content":"Tales of wudan, mysteioury story of Andrew Tate",
+    "CreatedAt":"3/04/2020"
+}
+
+
+### DELETE NOTE
+
+DELETE http://localhost:3000/2aa500dc-801d-4f10-bc23-d55c2ab5e329
+Content-Type: application/json
+
+    {
+    "Title":"Atop Wudan Tales",
+    "Content":"Tales of wudan, mysteioury story of Andrew Tate",    "CreatedAt":"3/04/2020"
+
+   }
